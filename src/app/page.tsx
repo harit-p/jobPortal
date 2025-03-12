@@ -1,19 +1,24 @@
 'use client'
 
-import Image from "next/image";
+
 import './globals.css';
 import { createTheme, MantineProvider, Slider } from "@mantine/core";
 import '@mantine/carousel/styles.css';
-import  HomePage from "@/Pages/HomePage";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FindJobs from "@/Pages/FindJobs";
-import Header from "@/Header/Header";
-import Footer from "@/Footer/Footer";
+import '@mantine/tiptap/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
+import  HomePage from "@/app/find-jobs/HomePage";
+import { Notifications } from '@mantine/notifications';
+
+
 
 
 export default function Home() {
 
   const theme = createTheme({
+    fontFamily:"poppins, sans-serif",
+    primaryColor:'brightSun',
+    primaryShade:4,
     colors:{
       'mineShaft': [
         '#f6f6f6',
@@ -42,20 +47,14 @@ export default function Home() {
         '#7a330d',
         '#461902',
       ],
+    },
     
-    
-    }
   })
   return ( 
       <MantineProvider defaultColorScheme="dark" theme={theme}>
-        <BrowserRouter>
-        <Header />
-          <Routes>
-            <Route path="/find-jobs" element={<FindJobs />} />
-            <Route path="*" element={<HomePage />} /> 
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        <Notifications position="top-center" zIndex={1000} />
+        <HomePage/>
+        
       </MantineProvider>
   );
 }

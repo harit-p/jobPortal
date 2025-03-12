@@ -1,6 +1,10 @@
-
+import "@/app/globals.css";
 import '@mantine/core/styles.css';
+import '@mantine/tiptap/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
 import { Poppins } from 'next/font/google';
+import { Notifications } from '@mantine/notifications';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -11,7 +15,9 @@ const poppins = Poppins({
 
 
 
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider, createTheme, mantineHtmlProps } from '@mantine/core';
+import Header from '@/Header/Header';
+import Footer from '@/Footer/Footer';
 
 export const metadata = {
   title: 'Job Portal App',
@@ -23,6 +29,41 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const theme = createTheme({
+      fontFamily:"poppins, sans-serif",
+      primaryColor:'brightSun',
+      primaryShade:4,
+      colors:{
+        'mineShaft': [
+          '#f6f6f6',
+          '#e7e7e7',
+          '#d1d1d1',
+          '#b0b0b0',
+          '#888888',
+          '#6d6d6d',
+         '#5d5d5d',
+          '#4f4f4f',
+          '#454545',
+        '#3d3d3d',
+          '#2d2d2d',
+        ],
+  
+        'brightSun': [
+         '#fffbeb',
+          '#fff3c6',
+          '#ffe588',
+          '#ffd149',
+          '#ffbd20',
+          '#f99b07',
+          '#dd7302',
+         '#b75006',
+         '#943c0c',
+          '#7a330d',
+          '#461902',
+        ],
+      },
+      
+    })
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -33,7 +74,13 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
             <body>
-              <MantineProvider>{children}</MantineProvider>
+              <MantineProvider defaultColorScheme='dark' theme={theme}>
+              <Notifications position="top-center" zIndex={1000}/>
+                <div className="relative">
+              <Header />{children}
+              <Footer />
+              </div>
+              </MantineProvider>
             </body>
           </html>
           );

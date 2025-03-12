@@ -1,8 +1,11 @@
+'use client'
 import { IconAnchor, IconBrandFacebook, IconBrandInstagram, IconBrandX } from "@tabler/icons-react"
 import { footerLinks } from "../../public/Data/Data"
+import { usePathname } from "next/navigation"
 
 const Footer = () => {
-    return (
+    const pathname = usePathname();
+    return ( pathname!="/signup" && pathname!="/login" &&
         <div className='pt-20 pb-5 flex gap-5 justify-around bg-mine-shaft-950 font-["poppins"] '>
             <div className="w-1/4 flex flex-col gap-4">
                 <div className='flex gap-1 items-center text-bright-sun-400'>

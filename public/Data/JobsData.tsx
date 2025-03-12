@@ -1,3 +1,4 @@
+import MultiInput from "@/app/find-jobs/FindJobs/MultiInput";
 import { IconBriefcase, IconMapPin, IconRecharging, IconSearch } from "@tabler/icons-react";
 
 const dropdownData = [
